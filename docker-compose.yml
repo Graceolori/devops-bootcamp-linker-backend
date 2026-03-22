@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: linker-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: linker
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    image: golori/linker-backend:latest
+    container_name: linker-backend
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/linker
+    ports:
+      - "5000:5000"
+
+  frontend:
+    image: golori/linker-frontend:latest
+    container_name: linker-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
+

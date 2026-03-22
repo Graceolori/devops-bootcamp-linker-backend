@@ -25,8 +25,8 @@ on:
 # GLOBAL VARIABLES
 # -------------------------------------------------
 env:
-    DOCKER_REPO: achebeh
-    IMAGE_NAME: devopsbootcamp-backend
+    DOCKER_REPO: golori
+    IMAGE_NAME:  linker-backend #this can be any name
 
 # -------------------------------------------------
 # JOB 1: Notify Slack that pipeline started
